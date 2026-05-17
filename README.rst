@@ -11,6 +11,7 @@ What's New
 ----------
 
 - **Related field search**: Search across ForeignKey relations (e.g., ``client__name``, ``category__title``)
+- **List filter mode (default)**: Autocomplete selection filters the changelist instead of redirecting to detail
 - **Django 4+ / 5+ support**: Fixed deprecated ``url()`` imports
 - **Modern build system**: ``pyproject.toml`` with hatchling (no more ``setup.py``)
 - **Python 3.8–3.13** support
@@ -144,6 +145,12 @@ Running Tests
 
 Changelog
 =========
+
+1.1.0 (2026)
+------------
+- Add ``redirect_to_detail`` option (default: ``False``)
+- Default behavior now filters changelist like native Django search
+- Set ``redirect_to_detail = True`` for old detail-page redirect behavior
 
 1.0.0 (2026)
 ------------
