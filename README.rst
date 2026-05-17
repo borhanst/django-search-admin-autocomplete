@@ -79,8 +79,32 @@ Configuration Options
 
     class MyModelAdmin(SearchAutoCompleteAdmin):
         search_fields = ['name', 'client__name']
-        search_prefix = '__icontains'  # Search operator (default: '__contains')
-        max_results = 20               # Max autocomplete results (default: 10)
+        search_prefix = '__icontains'       # Search operator (default: '__contains')
+        max_results = 20                    # Max autocomplete results (default: 10)
+        redirect_to_detail = True           # True: go to detail page, False: filter list (default: False)
+
+Behavior Modes
+--------------
+
+**Filter list view (default)**:
+
+.. code-block:: python
+
+    class MyModelAdmin(SearchAutoCompleteAdmin):
+        search_fields = ['name', 'client__name']
+        # redirect_to_detail = False  # default
+
+User selects from autocomplete → search form submits → changelist filters results (same as native Django search).
+
+**Redirect to detail page**:
+
+.. code-block:: python
+
+    class MyModelAdmin(SearchAutoCompleteAdmin):
+        search_fields = ['name', 'client__name']
+        redirect_to_detail = True
+
+User selects from autocomplete → redirects to the object's change/detail page.
 
 Customization
 =============

@@ -7,6 +7,11 @@
     <link type="text/css" href="{% static 'search_admin_autocomplete/css/styles.css' %}" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-2.2.4.min.js" crossorigin="anonymous"></script>
     <script src="{% static 'easy_autocomplete/jquery.easy-autocomplete.js' %}"></script>
+    <script>
+        var SEARCH_ADMIN_CONFIG = {
+            redirectToDetail: {% if cl.model_admin.redirect_to_detail %}true{% else %}false{% endif %}
+        };
+    </script>
     <script src="{% static 'easy_autocomplete/main.js' %}"></script>
 {% endblock %}
 

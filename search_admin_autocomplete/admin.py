@@ -37,6 +37,7 @@ class SearchAutoCompleteAdmin(admin.ModelAdmin):
     search_fields = []  # type: List[str]
     search_prefix = '__contains'
     max_results = 10
+    redirect_to_detail = False  # False: filter list view (default), True: redirect to detail page
 
     def get_urls(self) -> List[URLPattern]:
         urls = super(SearchAutoCompleteAdmin, self).get_urls()

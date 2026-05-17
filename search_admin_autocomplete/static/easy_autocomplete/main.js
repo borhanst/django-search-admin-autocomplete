@@ -14,7 +14,12 @@ $(function () {
         list: {
             maxNumberOfElements: 6,
             onChooseEvent: function () {
-                location.href = $('#searchbar').getSelectedItemData().url
+                var config = window.SEARCH_ADMIN_CONFIG || { redirectToDetail: false };
+                if (config.redirectToDetail) {
+                    location.href = $('#searchbar').getSelectedItemData().url;
+                } else {
+                    $('#changelist-search').submit();
+                }
             },
             match: {
                 enabled: true
