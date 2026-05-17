@@ -2,17 +2,22 @@ from functools import reduce
 from operator import or_
 from typing import List
 
-from django.conf.urls import url
 from django.contrib import admin
 from django.db.models import Q, Model
 from django.http import HttpRequest
-from django.urls.resolvers import URLPattern
 
 try:
     from django.urls import reverse
 except ImportError:
     from django.core.urlresolvers import reverse  # type: ignore
+
+try:
+    from django.urls import re_path
+except ImportError:
+    from django.conf.urls import url as re_path  # type: ignore
+
 from django.http.response import HttpResponse, JsonResponse, HttpResponseBadRequest
+from django.urls.resolvers import URLPattern
 
 
 class SearchAutoCompleteAdmin(admin.ModelAdmin):
@@ -35,7 +40,7 @@ class SearchAutoCompleteAdmin(admin.ModelAdmin):
 
     def get_urls(self) -> List[URLPattern]:
         urls = super(SearchAutoCompleteAdmin, self).get_urls()
-        api_urls = [url(r'^search/(?P<search_term>\w{0,50})$', self.search_api)]
+        api_urls = [re_path(r'^search/(?P<search_term>\w{0,50})$', self.search_api)]
         return api_urls + urls
 
     def search_api(self, request: HttpRequest, search_term: str) -> HttpResponse:
@@ -51,6 +56,16 @@ class SearchAutoCompleteAdmin(admin.ModelAdmin):
         return JsonResponse(data=[{'keyword': self.get_instance_name(item), 'url': self.get_instance_url(item)}
                                   for item in self.model.objects.filter(query)[0:self.max_results]], safe=False)
 
+    def _get_field_value(self, instance, field_name):
+        """Resolve field value supporting related field lookups like 'client__name'."""
+        parts = field_name.split('__')
+        obj = instance
+        for part in parts:
+            obj = getattr(obj, part, None)
+            if obj is None:
+                return None
+        return obj
+
     def get_instance_name(self, instance: Model) -> str:
         """
         Format instance name based on value of search fields.
@@ -58,7 +73,7 @@ class SearchAutoCompleteAdmin(admin.ModelAdmin):
         values = []
 
         for field in self.search_fields:
-            value = getattr(instance, field)
+            value = self._get_field_value(instance, field)
             if not value:
                 continue
             values.append(str(value))
