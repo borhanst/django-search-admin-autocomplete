@@ -27,7 +27,7 @@ Installation
 
 .. code-block:: bash
 
-    pip install django-search-admin-autocomplete
+    pip install django-listview-search-admin-autocomplete
 
 .. code-block:: python
 

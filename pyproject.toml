@@ -3,7 +3,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "django-search-admin-autocomplete"
+name = "django-listview-search-admin-autocomplete"
 version = "0.3.0"
 description = "Django admin autocomplete with related field support"
 readme = "README.rst"
