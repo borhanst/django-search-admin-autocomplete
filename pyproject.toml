@@ -4,25 +4,26 @@ build-backend = "hatchling.build"
 
 [project]
 name = "django-listview-search-admin-autocomplete"
-version = "0.3.0"
-description = "Django admin autocomplete with related field support"
+version = "1.0.0"
+description = "Django admin list view search autocomplete with related field support"
 readme = "README.rst"
 license = "MIT"
 authors = [
     { name = "linevich", email = "mail@linevich.net" },
 ]
 maintainers = [
-    { name = "Your Name", email = "your@email.com" },
+    { name = "borhanst" },
 ]
-keywords = ["django", "admin", "autocomplete", "search"]
+keywords = ["django", "admin", "autocomplete", "search", "listview", "related-fields"]
 classifiers = [
-    "Development Status :: 4 - Beta",
+    "Development Status :: 5 - Production/Stable",
     "Environment :: Web Environment",
     "Framework :: Django",
     "Framework :: Django :: 3.2",
     "Framework :: Django :: 4.2",
     "Framework :: Django :: 5.0",
     "Framework :: Django :: 5.1",
+    "Framework :: Django :: 5.2",
     "Intended Audience :: Developers",
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
@@ -43,11 +44,11 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/linevich/django-search-admin-autocomplete"
-Repository = "https://github.com/linevich/django-search-admin-autocomplete"
-Documentation = "https://github.com/linevich/django-search-admin-autocomplete#readme"
-Issues = "https://github.com/linevich/django-search-admin-autocomplete/issues"
-Changelog = "https://github.com/linevich/django-search-admin-autocomplete/releases"
+Homepage = "https://github.com/borhanst/django-listview-search-admin-autocomplete"
+Repository = "https://github.com/borhanst/django-listview-search-admin-autocomplete"
+Documentation = "https://github.com/borhanst/django-listview-search-admin-autocomplete#readme"
+Issues = "https://github.com/borhanst/django-listview-search-admin-autocomplete/issues"
+Changelog = "https://github.com/borhanst/django-listview-search-admin-autocomplete/releases"
 
 [tool.hatch.build.targets.wheel]
 packages = ["search_admin_autocomplete"]
@@ -70,5 +71,3 @@ line-length = 120
 
 [tool.ruff.lint]
 select = ["E", "F", "W", "I"]
-
-

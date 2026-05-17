@@ -1,5 +1,5 @@
-Django-search-admin-autocomplete
-================================
+Django Listview Search Admin Autocomplete
+=========================================
 
 .. image:: https://raw.githubusercontent.com/linevych/django-search-admin-autocomplete/master/doc/demo.gif
 
@@ -121,13 +121,14 @@ Running Tests
 Changelog
 =========
 
-0.3.0 (2026)
+1.0.0 (2026)
 ------------
 - **Forked** from archived ``django-search-admin-autocomplete``
 - Added support for related field lookups (e.g., ``client__name``)
 - Updated for Django 4+ and 5+ compatibility
 - Modernized package configuration with ``pyproject.toml``
 - Added comprehensive test suite (18 tests)
+- Production-ready release
 
 0.2.1 and earlier
 -----------------
